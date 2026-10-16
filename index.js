@@ -2,7 +2,6 @@ const queue = [
   { name: 'John', waitTimeMs: 1500 },
   { name: 'Ed', waitTimeMs: 2000 },
   { name: 'Jane', waitTimeMs: 500 },
-  { name: '', waitTimeMs: 1000 },
 ];
 
 function serveOne(p) {
@@ -21,11 +20,14 @@ function serveOne(p) {
 }
 
 function serve(queue) {
-  queue.forEach((p) => {
-    serveOne(p)
-      .then((p) => console.log(`${p.name} is served!`))
-      .catch((why) => console.log(why));
-  });
+  return queue.reduce((prevPromise, p) => {
+    return prevPromise.then(() => {
+      return serveOne(p)
+        .then((served) => console.log(`${served.name} is served!`))
+        .catch((why) => console.log(why));
+    });
+  }, Promise.resolve());
 }
 
-serve(queue);
+console.time('Queue');
+serve(queue).then(() => console.timeEnd('Queue'));
