@@ -1,17 +1,17 @@
 const queue = [
-  { name: 'John', waitTimeMs: 1500 },
-  { name: 'Ed', waitTimeMs: 2000 },
-  { name: 'Jane', waitTimeMs: 500 },
+  { name: "John", waitTimeMs: 1500 },
+  { name: "Ed", waitTimeMs: 2000 },
+  { name: "Jane", waitTimeMs: 500 },
 ];
 
 function serveOne(p) {
   return new Promise((resolve, reject) => {
-    if (typeof p.name !== 'string' || !p.name) {
-      reject('Invalid name');
+    if (typeof p.name !== "string" || !p.name) {
+      reject("Invalid name");
       return;
     }
 
-    console.log('Serving ', p.name);
+    console.log("Serving ", p.name);
 
     setTimeout(() => {
       resolve(p);
@@ -29,5 +29,5 @@ function serve(queue) {
   }, Promise.resolve());
 }
 
-console.time('Queue');
-serve(queue).then(() => console.timeEnd('Queue'));
+console.time("Queue");
+serve(queue).then(() => console.timeEnd("Queue"));
