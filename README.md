@@ -1,4 +1,4 @@
-# Javascript 8 
+# Javascript 8
 
 ## Asynchronous using Promise
 
